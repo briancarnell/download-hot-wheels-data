@@ -1,38 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pandas as pd
+import os
 
-
-# In[2]:
-
-
-df = pd.read_html("https://hotwheels.fandom.com/wiki/List_of_2022_Hot_Wheels")
-
-
-# In[10]:
-
-
-df = (df[0])
-
-
-# In[11]:
-
-
-df
-
-
-# In[12]:
-
-
-df.columns
-
-
-# In[ ]:
-
-
-
-
+print("Enter the Hot Wheels model year you want to download:")
+hot_wheels_year = input()
+hot_wheels_url = "https://hotwheels.fandom.com/wiki/List_of_" + hot_wheels_year + "_Hot_Wheels"
+df = pd.read_html(hot_wheels_url)
+df = (df[0].astype(str))
+df.to_csv("hot_wheels_" + hot_wheels_year +".csv", index=False)
